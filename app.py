@@ -8,7 +8,7 @@ import pytz
 from flask import Flask, render_template, send_from_directory, flash, app
 from waitress import serve
 from datetime import datetime
-from data import data_loader
+
 
 if not os.path.isfile('data.db'):
     conn = sqlite3.connect('data.db')
@@ -35,12 +35,6 @@ def create_app():
 
 
 APP = create_app()
-
-# load the data sets from the covid_19_data.csv
-data_loader_obj = data_loader.DataLoader()
-DATA_SET_FULL = data_loader_obj.prepare_data_set_full()
-DATA_SET_GROUPED = data_loader_obj.prepare_data_set_grouped()
-
 
 @APP.route('/favicon.ico')
 def favicon():
@@ -84,7 +78,7 @@ def get_item_details(item):
     :param item:
     :return:
     """
-    filtered_data_set = [x for x in DATA_SET_FULL if x.get('ObservationDate') == item]
+    filtered_data_set = 0
 
     return render_template('details.html', template_data_set=filtered_data_set)
 
