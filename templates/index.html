@@ -1,9 +1,6 @@
 {% extends "layout.html" %} {% block content %}
 <script src="{{url_for('static', filename='js/external/Chart.bundle.min.js')}}"></script>
 
-<div class="alert alert-info">
-    Click a chart point to drilldown to the underlying dataset
-</div>
     <div class="jumbotron">      <div class="row">
 
 <div class="container">
@@ -23,21 +20,21 @@
         data: {
             labels: {{ template_labels | tojson }},
             datasets: [{
-                label: "Covid 19 confirmed",
+                label: "Tętno żołnierza",
                 data: {{ template_values_confirmed }},
                 backgroundColor: "#3399ff",
                 borderColor: "#3399ff",
                 fill: false,
             },
             {
-                label: "Covid 19 deaths",
+                label: "Prędkość żołnierza",
                 data: {{ template_values_deaths }},
                 backgroundColor: "#000066",
                 borderColor: "#000066",
                 fill: false,
             },
             {
-                label: "Covid 19 recovered",
+                label: "",
                 data: {{ template_values_recovered }},
                 backgroundColor: "#33cc33",
                 borderColor: "#33cc33",
@@ -48,7 +45,7 @@
         options: {
             title: {
                 display: true,
-                text: 'line chart with drilldowns'
+                text: 'Wykres zależności tętna od prędkości'
             },
             legend: {
                 onHover: function(e) {

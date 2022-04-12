@@ -21,7 +21,6 @@ class DataLoader:
             _line['ObservationDate'] = datetime.strptime(line['ObservationDate'], '%m/%d/%Y').strftime('%m-%d-%Y')
             self.data_set_full.append(_line)
         self.data_set_full = sorted(self.data_set_full, key=lambda x: x['ObservationDate'])
-
         return self.data_set_full
 
     def prepare_data_set_grouped(self):
@@ -36,5 +35,6 @@ class DataLoader:
                                           sum([float(r.get('Deaths')) for r in _group]),
                                           sum([float(r.get('Recovered')) for r in _group])
                                           ))
+        print(self.data_set_grouped)
 
         return self.data_set_grouped
